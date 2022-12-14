@@ -1,0 +1,76 @@
+- model: users.department
+  pk: 0
+  fields:
+    name: 프론트엔드
+- model: users.department
+  pk: 1
+  fields:
+    name: 백엔드
+- model: users.team
+  pk: 0
+  fields:
+    name: 팀플
+- model: users.team
+  pk: 1
+  fields:
+    name: diaMEtes
+- model: users.team
+  pk: 2
+  fields:
+    name: 포겟미낫
+- model: users.team
+  pk: 3
+  fields:
+    name: 프리폴리오
+- model: users.team
+  pk: 4
+  fields:
+    name: 밥묵자
+- model: users.candidate
+  pk: 0
+  fields:
+    name: 피카츄
+    department: 0
+    team: 0
+- model: users.candidate
+  pk: 1
+  fields:
+    name: 라이츄
+    department: 1
+    team: 2
+- model: users.candidate
+  pk: 2
+  fields:
+    name: 파이리
+    department: 0
+    team: 4
+- model: users.candidate
+  pk: 3
+  fields:
+    name: 꼬부기
+    department: 1
+    team: 0
+- model: users.candidate
+  pk: 4
+  fields:
+    name: 버터플
+    department: 0
+    team: 1
+- model: users.candidate
+  pk: 5
+  fields:
+    name: 야도란
+    department: 1
+    team: 4
+- model: users.candidate
+  pk: 6
+  fields:
+    name: 피죤투
+    department: 1
+    team: 3
+- model: users.candidate
+  pk: 7
+  fields:
+    name: 또가스
+    department: 0
+    team: 2
