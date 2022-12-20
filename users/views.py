@@ -18,11 +18,13 @@ class VoteView(APIView):
     def post(self, request):
         vote_list = request.data['vote']
         login_user = AuthView.get(self, request).data
-        login_user_detail = Profile.objects.get(name = login_user['name'])
-        print(login_user_detail.name)
-        if login_user_detail is None:
-            raise exceptions.ValidationError(detail = 'Please login for voting')
+        print(login_user)
+        if login_user['message'] == '토큰 없음':
+            raise exceptions.ValidationError(detail='Please login for voting')
         else:
+            login_user_detail = Profile.objects.get(name = login_user['name'])
+            print(login_user_detail.name)
+
             # 투표 정보 가져오기
             part_vote, demoday_vote = vote_list[0], vote_list[1]
             candidate = Candidate.objects.get(id=part_vote['name']) #투표한 파트장 정보 가져오기
