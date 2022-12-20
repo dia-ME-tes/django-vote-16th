@@ -47,6 +47,15 @@ class ProfileSerializer(serializers.ModelSerializer):
 
 
 class CandidateSerializer(serializers.ModelSerializer):
+    department = serializers.SerializerMethodField()
+    team = serializers.SerializerMethodField()
+
+    def get_department(self, obj):
+        return obj.department.name
+
+    def get_team(self, obj):
+        return obj.team.name
+
     class Meta:
         model = Candidate  # 사용할 모델
-        fields = ['id', 'department_id', 'team_id', 'name', 'score']  # 사용할 모델 필드
+        fields = ('id', 'department_id', 'department', 'team_id', 'team', 'name', 'score')
