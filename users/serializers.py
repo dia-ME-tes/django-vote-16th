@@ -18,6 +18,11 @@ class TeamSerializer(serializers.ModelSerializer):
 
 
 class VoteSerializer(serializers.ModelSerializer):
+    user_id = serializers.IntegerField(write_only=True)
+    department_id = serializers.IntegerField(write_only=True)
+    team_id = serializers.IntegerField(write_only=True)
+    candidate_id = serializers.IntegerField(write_only=True)
+
     class Meta:
         model = Vote  # 사용할 모델
         fields = ['user_id', 'department_id', 'team_id', 'candidate_id']  # 사용할 모델 필드
