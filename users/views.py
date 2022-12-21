@@ -12,18 +12,18 @@ from users.models import Profile, Department, Vote, Candidate, Team
 from users.serializers import VoteSerializer, ProfileSerializer, CandidateSerializer, TeamSerializer
 
 
-#투표
+# 투표
 class VoteView(APIView):
     def post(self, request):
         vote = request.data
         login_user = AuthView.get(self, request).data
         print(login_user)
-        if AuthView.get(self,request).status_code is status.HTTP_200_OK:
-            login_user_detail = Profile.objects.get(name = login_user['name'])
+        if AuthView.get(self, request).status_code is status.HTTP_200_OK:
+            login_user_detail = Profile.objects.get(name=login_user['name'])
 
             if login_user_detail is not None:
 
-                #투표정보 가져오기
+                # 투표정보 가져오기
                 try:
                     team = Team.objects.get(id=vote['team'])  # 투표한 팀 정보 가져오기
                     team.score += 1
@@ -38,16 +38,16 @@ class VoteView(APIView):
                 except:
                     candidate = None
 
-                #팀 투표
+                # 팀 투표
                 if team is not None:
                     vote_serializer = VoteSerializer(data={
-                        'user_id' : login_user_detail.user.id,
-                        'department_id' : login_user_detail.department.id,
-                        'team_id' : team.id,
-                        'candidate_id' : None
+                        'user_id': login_user_detail.user.id,
+                        'department_id': login_user_detail.department.id,
+                        'team_id': team.id,
+                        'candidate_id': None
                     })
 
-                #후보자 투표
+                # 후보자 투표
                 elif candidate is not None:
                     vote_serializer = VoteSerializer(data={
                         'user_id': login_user_detail.user.id,
@@ -60,19 +60,19 @@ class VoteView(APIView):
                     vote_serializer.save()
                     return Response('success', status=status.HTTP_200_OK)
                 else:
-                    return Response('bad request',status=status.HTTP_400_BAD_REQUEST)
+                    return Response('bad request', status=status.HTTP_400_BAD_REQUEST)
 
-        elif AuthView.get(self,request).status_code is status.HTTP_400_BAD_REQUEST:
+        elif AuthView.get(self, request).status_code is status.HTTP_400_BAD_REQUEST:
             raise exceptions.ValidationError(detail='Please login for voting')
 
-        elif AuthView.get(self,request).status_code is status.HTTP_401_UNAUTHORIZED:
+        elif AuthView.get(self, request).status_code is status.HTTP_401_UNAUTHORIZED:
             raise exceptions.ValidationError(detail='token is expired')
 
-        elif AuthView.get(self,request).status_code is status.HTTP_403_FORBIDDEN:
+        elif AuthView.get(self, request).status_code is status.HTTP_403_FORBIDDEN:
             raise exceptions.ValidationError(detail='Please login again')
 
 
-#파트장 후보리스트
+# 파트장 후보리스트
 class CandidateListView(APIView):
     def get(self, request):
         try:
@@ -90,7 +90,7 @@ class CandidateListView(APIView):
             return Response({"message": "method 필드를 입력해주세요."}, status=status.HTTP_400_BAD_REQUEST)
 
 
-#데모데이 후보리스트
+# 데모데이 후보리스트
 class TeamListView(APIView):
     def get(self, request):
         try:
