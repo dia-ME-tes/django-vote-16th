@@ -5,6 +5,12 @@
 ### ERD 구성
 ![투표ERD](https://user-images.githubusercontent.com/56791347/208661842-6af9123e-e209-40d7-ba26-74b882cde3d7.png)
 
+### API 명세서  
+ * account
+   * https://documenter.getpostman.com/view/19783826/2s8Z6scc5h
+ * user
+   * https://documenter.getpostman.com/view/19783826/2s8Z6scc5m
+   
 ### 프로젝트 세팅
 
 0. 폴더 구조
