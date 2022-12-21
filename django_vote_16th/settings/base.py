@@ -75,7 +75,7 @@ SIMPLE_JWT = {
 
 MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware',
-    # 'django_vote_16th.middleware.HealthCheckMiddleware',
+    'django_vote_16th.middleware.HealthCheckMiddleware',
     # 'django_vote_16th.middleware.health',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
