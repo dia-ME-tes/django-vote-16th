@@ -74,13 +74,13 @@ class VoteView(APIView):
 
 # 파트장 후보리스트
 class CandidateListView(APIView):
-    def get(self, request):
+    def get(self, request, method):
         try:
-            if request.data['method'] == 0:  # 후보
+            if method == 0:  # 후보
                 candidates = Candidate.objects.all()
                 serializer = CandidateSerializer(candidates, many=True)
                 return Response(serializer.data, status=status.HTTP_200_OK)
-            elif request.data['method'] == 1:  # 결과
+            elif method == 1:  # 결과
                 candidates = Candidate.objects.all().order_by('-score')
                 serializer = CandidateSerializer(candidates, many=True)
                 return Response(serializer.data, status=status.HTTP_200_OK)
@@ -92,13 +92,13 @@ class CandidateListView(APIView):
 
 # 데모데이 후보리스트
 class TeamListView(APIView):
-    def get(self, request):
+    def get(self, request, method):
         try:
-            if request.data['method'] == 0:  # 후보
+            if method == 0:  # 후보
                 teams = Team.objects.all()
                 serializer = TeamSerializer(teams, many=True)
                 return Response(serializer.data, status=status.HTTP_200_OK)
-            elif request.data['method'] == 1:  # 결과
+            elif method == 1:  # 결과
                 teams = Team.objects.all().order_by('-score')
                 serializer = TeamSerializer(teams, many=True)
                 return Response(serializer.data, status=status.HTTP_200_OK)
