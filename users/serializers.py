@@ -19,7 +19,7 @@ class TeamSerializer(serializers.ModelSerializer):
 
 class VoteSerializer(serializers.ModelSerializer):
     user_id = serializers.IntegerField(write_only=True)
-    department_id = serializers.IntegerField(write_only=True)
+    department_id = serializers.IntegerField(write_only=True, allow_null=True)
     team_id = serializers.IntegerField(write_only=True, allow_null=True)
     candidate_id = serializers.IntegerField(write_only=True, allow_null=True)
 
@@ -29,9 +29,11 @@ class VoteSerializer(serializers.ModelSerializer):
 
 
 class ProfileSerializer(serializers.ModelSerializer):
+    user_id = serializers.IntegerField(read_only=True)
+
     class Meta:
         model = Profile  # 사용할 모델
-        fields = ['department', 'team', 'name']  # 사용할 모델 필드
+        fields = ['user_id', 'department', 'team', 'name']  # 사용할 모델 필드
 
     def save(self, validated_data):
         email = validated_data.get('email')
