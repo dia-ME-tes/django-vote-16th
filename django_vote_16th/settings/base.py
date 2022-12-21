@@ -102,9 +102,11 @@ CORS_ALLOW_HEADERS = [
     'Refresh-Authorization'
 ]
 
-CORS_ALLOWED_ORIGINS = [
-    env('CORS_ALLOWED_ORIGINS'),
-]
+# CORS_ALLOWED_ORIGINS = [
+#     env('CORS_ALLOWED_ORIGINS'),
+# ]
+
+CORS_ORIGIN_WHITELIST = ['http://localhost:3000', 'https://ceos-16-vote.ml', 'http://ceos-16-vote.ml']
 
 ROOT_URLCONF = 'django_vote_16th.urls'
 
