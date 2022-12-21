@@ -108,7 +108,7 @@ CORS_ALLOW_HEADERS = [
 #     env('CORS_ALLOWED_ORIGINS'),
 # ]
 
-CORS_ORIGIN_WHITELIST = ['http://localhost:3000', 'https://ceos-16-vote.ml', 'http://ceos-16-vote.ml']
+CORS_ORIGIN_WHITELIST = ['http://localhost:3000', 'https://ceos-16-vote.ml', 'http://ceos-16-vote.ml', 'https://react-vote-16th-five.vercel.app/']
 
 ROOT_URLCONF = 'django_vote_16th.urls'
 
