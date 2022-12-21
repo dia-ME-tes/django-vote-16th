@@ -1,19 +1,18 @@
 from django.db.migrations import serializer
 from django.shortcuts import render
+from django.shortcuts import get_object_or_404
 
-# Create your views here.
 from rest_framework import status, exceptions
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
-
-#투표
 from account.models import User
 from account.views import AuthView
 from users.models import Profile, Department, Vote, Candidate, Team
-from users.serializers import VoteSerializer, ProfileSerializer
+from users.serializers import VoteSerializer, ProfileSerializer, CandidateSerializer, TeamSerializer
 
 
+#투표
 class VoteView(APIView):
     def post(self, request):
         vote = request.data
@@ -71,3 +70,39 @@ class VoteView(APIView):
 
         elif AuthView.get(self,request).status_code is status.HTTP_403_FORBIDDEN:
             raise exceptions.ValidationError(detail='Please login again')
+
+
+#파트장 후보리스트
+class CandidateListView(APIView):
+    def get(self, request):
+        try:
+            if request.data['method'] == 0:  # 후보
+                candidates = Candidate.objects.all()
+                serializer = CandidateSerializer(candidates, many=True)
+                return Response(serializer.data, status=status.HTTP_200_OK)
+            elif request.data['method'] == 1:  # 결과
+                candidates = Candidate.objects.all().order_by('-score')
+                serializer = CandidateSerializer(candidates, many=True)
+                return Response(serializer.data, status=status.HTTP_200_OK)
+            else:
+                return Response({"message": "필드에 0 또는 1을 입력해주세요."}, status=status.HTTP_400_BAD_REQUEST)
+        except:
+            return Response({"message": "method 필드를 입력해주세요."}, status=status.HTTP_400_BAD_REQUEST)
+
+
+#데모데이 후보리스트
+class TeamListView(APIView):
+    def get(self, request):
+        try:
+            if request.data['method'] == 0:  # 후보
+                teams = Team.objects.all()
+                serializer = TeamSerializer(teams, many=True)
+                return Response(serializer.data, status=status.HTTP_200_OK)
+            elif request.data['method'] == 1:  # 결과
+                teams = Team.objects.all().order_by('-score')
+                serializer = TeamSerializer(teams, many=True)
+                return Response(serializer.data, status=status.HTTP_200_OK)
+            else:
+                return Response({"message": "필드에 0 또는 1을 입력해주세요."}, status=status.HTTP_400_BAD_REQUEST)
+        except:
+            return Response({"message": "method 필드를 입력해주세요."}, status=status.HTTP_400_BAD_REQUEST)
