@@ -1,5 +1,7 @@
 from django.urls import path
 
-urlpatterns = [
+from users.views import VoteView
 
+urlpatterns = [
+    path('vote/', VoteView.as_view()),  # 투표
 ]
