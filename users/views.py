@@ -19,7 +19,7 @@ class VoteView(APIView):
 
         if AuthView.get(self, request).status_code is status.HTTP_200_OK:
             login_user = AuthView.get(self, request).data
-            login_user_detail = Profile.objects.get(user_id=login_user['id'])
+            login_user_detail = Profile.objects.get(user_id=login_user['user_id'])
 
             if login_user_detail is not None:
 
@@ -42,7 +42,7 @@ class VoteView(APIView):
                 if team is not None:
                     vote_serializer = VoteSerializer(data={
                         'user_id': login_user_detail.user.id,
-                        'department_id': login_user_detail.department.id,
+                        'department_id': None,
                         'team_id': team.id,
                         'candidate_id': None
                     })
@@ -51,7 +51,7 @@ class VoteView(APIView):
                 elif candidate is not None:
                     vote_serializer = VoteSerializer(data={
                         'user_id': login_user_detail.user.id,
-                        'department_id': login_user_detail.department.id,
+                        'department_id': candidate.department_id,
                         'team_id': None,
                         'candidate_id': candidate.id
                     })
