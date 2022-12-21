@@ -16,9 +16,9 @@ from users.serializers import VoteSerializer, ProfileSerializer, CandidateSerial
 class VoteView(APIView):
     def post(self, request):
         vote = request.data
-        login_user = AuthView.get(self, request).data
-        print(login_user)
+
         if AuthView.get(self, request).status_code is status.HTTP_200_OK:
+            login_user = AuthView.get(self, request).data
             login_user_detail = Profile.objects.get(name=login_user['name'])
 
             if login_user_detail is not None:
