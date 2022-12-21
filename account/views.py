@@ -51,7 +51,13 @@ class LoginView(APIView):
             profile = Profile.objects.get(user_id=user_id)
             profile_serializer = ProfileSerializer(profile)
 
-            res = Response(profile_serializer.data, status=status.HTTP_200_OK)
+            res = Response({
+                "user_profile": profile_serializer.data,
+                "token": {
+                    "access": access_token,
+                    "refresh": refresh_token,
+                }
+            }, status=status.HTTP_200_OK)
             # 쿠키에 넣어서 전달
             res.set_cookie("access", access_token, httponly=True)
             res.set_cookie("refresh", refresh_token, httponly=True)
