@@ -59,8 +59,8 @@ class LoginView(APIView):
                 }
             }, status=status.HTTP_200_OK)
             # 쿠키에 넣어서 전달
-            res.set_cookie("access", access_token, httponly=True)
-            res.set_cookie("refresh", refresh_token, httponly=True)
+            res.set_cookie("access", access_token, httponly=True, secure=True, samesite='None')
+            res.set_cookie("refresh", refresh_token, httponly=True, secure=True, samesite='None')
             return res
         else:
             if serializer.errors.get('non_field_errors')[0] == "user account not exist":
