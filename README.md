@@ -7,9 +7,9 @@
 
 ### API 명세서  
  * account
-   * https://documenter.getpostman.com/view/19783826/2s8Z6scc5h
+   * https://documenter.getpostman.com/view/24886420/2s8Z6u4a1z
  * user
-   * https://documenter.getpostman.com/view/19783826/2s8Z6scc5m
+   * https://documenter.getpostman.com/view/24886420/2s8Z6u4a23
    
 ### 프로젝트 세팅
 
