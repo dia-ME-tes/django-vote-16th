@@ -6,10 +6,7 @@
 ![투표ERD](https://user-images.githubusercontent.com/56791347/208661842-6af9123e-e209-40d7-ba26-74b882cde3d7.png)
 
 ### API 명세서  
- * account
-   * https://documenter.getpostman.com/view/24886420/2s8Z6u4a1z
- * user
-   * https://documenter.getpostman.com/view/24886420/2s8Z6u4a23
+ * https://documenter.getpostman.com/view/25034399/2s8Z6vXZPN
    
 ### 프로젝트 세팅
 
